@@ -1,0 +1,15 @@
+h1 {
+    font-size:20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-optical-sizing: 20px;
+    color:palegreen;
+}
+
+
+.StylingOurButton {
+   width:500px;
+   height:200px;
+   align-content: center;
+   background-color:royalblue;
+   color:white;
+}

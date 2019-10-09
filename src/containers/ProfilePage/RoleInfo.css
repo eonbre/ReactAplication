@@ -1,0 +1,16 @@
+.RoleInfoKlasa{
+   border-color:rebeccapurple;
+   background-color:teal;
+   text-emphasis-color: red;
+   color:black;
+   border-width: 2cm;
+   width:600px;
+   height:200px;
+   margin-left:820px;
+   margin-top:90px;
+}
+h1{
+    text-emphasis-color:red;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
