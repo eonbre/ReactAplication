@@ -11,9 +11,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) =>{
     switch(action.type){
         case types.GET_USER_REQUEST:
-            return{ ...state }
+            return{ ...state}
         case types.GET_USER_SUCCESS:
-            return{ ...state, ...action.payload.data.user}
+            return{ ...state, ...action.payload.user_info}
         case types.GET_USER_FAILURE:
             return{ ...INITIAL_STATE}
         case types.LOGOUT_SUCCESS:

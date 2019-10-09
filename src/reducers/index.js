@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import langReducer from './langReducer';
 import { loadingReducer } from '../API/loadingReducer';
 import { errorReducer } from '../API/errorReducer';

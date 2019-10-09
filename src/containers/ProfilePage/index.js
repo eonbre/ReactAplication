@@ -7,17 +7,18 @@ class ProfilePage extends React.Component{
     
     render(){
         return(
-            <>
+                 <>
                 {this.props.user.auth.isAuthenticated? 
+               
                 <div>
-                    <h2>This is a profile of {this.props.user}</h2>
-                    <h2>Email of this profile is {this.props.user.email}</h2>
+                    <h2>This is a profile of </h2>{this.props.user.info.username}
+                    <h2>Email of this profile is </h2>{this.props.user.info.email}
                     
                     </div>
                
             :
                 <div>
-                    <h2>This is a profile of {this.props.user.info.username}</h2>
+                    <h2>This is a profile of </h2>{this.props.user.username}
                     <p>You are not logged in.</p>
                 </div>
             }
@@ -27,9 +28,9 @@ class ProfilePage extends React.Component{
             <div>
                 <RoleInfo>{this.props.role.category}</RoleInfo>
             </div>
-            
-           
             </>
+           
+            
            
         )
     }
@@ -37,7 +38,7 @@ class ProfilePage extends React.Component{
 
 const mapStateToProps = state => {
     return {
-      user: state.user,
+      user: state.user,   
       role: state.role
     }
   }

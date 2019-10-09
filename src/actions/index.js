@@ -35,6 +35,7 @@ export const LoginSuccess = (token) => async dispatch => {
     
     const payload = {...token, succ_msg: "Login sucessful!"}
     dispatch({ type: types.LOGIN_SUCCESS, payload: payload});
+    console.log("Login successful")
     dispatch(FetchUserStart(token));
     
 }
@@ -70,6 +71,7 @@ export const FetchUserSuccess = (user_info) => async dispatch => {
 }
 
 export const FetchUserFail = (err_msg) => {
+    console.log("User fetching failed");
     return { type: types.GET_USER_FAILURE, payload: {err_msg:err_msg}}
 }
 
