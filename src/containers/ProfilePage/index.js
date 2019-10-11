@@ -26,7 +26,7 @@ class ProfilePage extends React.Component{
                 <SelectOption/>
             </div>
             <div>
-                <RoleInfo>{this.props.role.category}</RoleInfo>
+                <RoleInfo></RoleInfo>
             </div>
             </>
            

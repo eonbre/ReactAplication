@@ -1,13 +1,16 @@
 .RoleInfoKlasa{
    border-color:rebeccapurple;
+   border-top:thick;
    background-color:teal;
    text-emphasis-color: red;
    color:black;
    border-width: 2cm;
-   width:600px;
-   height:200px;
-   margin-left:820px;
-   margin-top:90px;
+   width:1300px;
+   height:900px;
+   margin-left:-50px;
+   margin-top:-180px;
+   
+  
 }
 h1{
     text-emphasis-color:red;

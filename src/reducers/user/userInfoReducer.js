@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) =>{
         case types.GET_USER_REQUEST:
             return{ ...state}
         case types.GET_USER_SUCCESS:
-            return{ ...state, ...action.payload.user_info}
+            return{ ...state, ...action.payload.data.user}
         case types.GET_USER_FAILURE:
             return{ ...INITIAL_STATE}
         case types.LOGOUT_SUCCESS:

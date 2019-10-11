@@ -4,8 +4,11 @@ import * as types from '../../actions/types'
 const INITIAL_STATE = {
     isCreating: null,
     isCreated: null,
-    categoryname:null,
+    categoryname:[],
+    vat:null,
     datecreated:null,
+    address1:null,
+    address2:null,
 }
 
 export  default  (state = INITIAL_STATE, action) =>{

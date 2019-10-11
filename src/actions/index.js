@@ -47,8 +47,9 @@ export const LoginFail = (err_msg) => {
 export const FetchUserStart = (token) => async dispatch =>{
     dispatch({ type: types.GET_USER_REQUEST});
     const header = `${token.token_type} ${token.access_token}`;
+    console.log("token type" ,token);
     con.get(
-        'api/users/', 
+        '/api/users/', 
         {
             headers: {
                 Authorization: header,
@@ -86,6 +87,7 @@ export const RegistrationStart = (credentials) => async dispatch =>{
     ).then(response =>{
         dispatch(RegistrationSuccess(response.data));
         dispatch(LoginSuccess(credentials));
+        
        
     }).catch(err => { 
         dispatch(RegistrationFail(err));
@@ -97,7 +99,8 @@ export const RegistrationSuccess = (user_info) => async dispatch => {
     const msg="Registration successful! Visit your profile page to edit your information.";
     const payload = {...user_info, succ_msg: msg}
     console.log("user info", user_info)
-    dispatch({ type: types.REGISTRATION_SUCCESS, payload: payload});
+    
+    dispatch({ type: types.REGISTRATION_SUCCESS , payload: payload});
 }
 
 export const RegistrationFail = (err_msg) => {
@@ -183,8 +186,10 @@ export const ForgotPasswordStart = (email) => dispatch => {
     bodyFormData.set("email", email);
     apiCon.post( address, bodyFormData)
         .then(
+            
             response => {
                 dispatch(ForgotPasswordSuccess());
+               
         })
         .catch(err =>{
             dispatch(ForgotPasswordFail(err));
@@ -207,10 +212,11 @@ export const RoleStart = (category) => async dispatch =>{
     bodyFormData.set("category", category);
     
     const response = await con.post(
-        '/api/roles',
+        '/api/roles/',
         bodyFormData
     ).then(res =>{
         dispatch(RoleSuccess(res.data));
+        console.log("ROLELES", res.data);
     })
     .catch(err => { 
         dispatch(RoleFail("Role could not be created. "+err));
