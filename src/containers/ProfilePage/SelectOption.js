@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 import { Select } from '../../components/formElements';
 import './SelectOption.css';
 import {RoleStart} from '../../actions'
-
+import ModalPopUp from '../ModalWindow'
 
 class SelectOption extends React.Component{
-onChange = (values) => {
-    this.props.RoleStart(values);
-  } 
-
+  constructor(){
+    super();
+      this.state = {
+        value:0
+      }
+    }
   
+onChange = (values) => {
+  this.setState({ value: this.state.value+1 })
+  this.props.RoleStart(values);
+} 
 // buildOptions = () => {
 //   const { formatMessage } = this.props.intl;
 //   let options = [];
@@ -33,8 +39,12 @@ onChange = (values) => {
 // }
  
 render(){
+  if(this.state.value >1 ){
+    
+    return <ModalPopUp/>
+ }
     return (
-        <>  <div className="SelectOptionKlasa">
+        <><div className="SelectOptionKlasa">
             <Select 
                 name="roleSelect"
                 label={"Select roles"}
@@ -49,16 +59,26 @@ render(){
                  {label:"Educator",  value:this.props.role.addnewrole},
                  {label:"Add new Role",  value:this.props.role.addnewrole}
                  ]}
-
-                onChange={this.onChange}
+                 onChange={this.onChange}
                 
 
+
             />
+            
+             
             </div>
         </>
+        
     )
 }
 } 
+
+
+const mapDispatchToProps = (dispatch) => ({
+  RoleStart: (values) => dispatch(RoleStart(values))
+ 
+});
+
 
 const mapStateToProps = state => {
     return {
@@ -66,7 +86,7 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps)(SelectOption);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectOption);
 
 
 

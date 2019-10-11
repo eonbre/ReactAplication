@@ -1,26 +1,28 @@
 import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 import { connect } from 'react-redux';
-
-
-buildButtons = () => {
- for (var i=0; i<this.props.roles.length; i++) {
-     const role = this.props.roles[i];
-     <Button variant="primary">{this.props.role.categoryname}</Button>
-  
-    }
-  }
-  
+import { Button } from 'react-bootstrap';
+import './stajl.css'; 
 class ModalPopUp extends React.Component  {
+
+buildButtons = (i) => {
+  const buttons = this.props.roles.map(role => <Button variant="primary">{this.props.roles.categoryname[i]}</Button>);
+}
+
+clickedButton = () => {
+  
+}
+
+
 render(){ 
 return(
-
-    <Modal.Dialog>
-    <Modal.Header closeButton>
-      <Modal.Title>Choose Role</Modal.Title>
+    
+    <Modal.Dialog className="positionandsize">
+    <Modal.Header closeButton className="closeButtonKlasa">
+      <Modal.Title className="TitleKlasa">Choose Role</Modal.Title>
     </Modal.Header>
   
-    <Modal.Body>
+    <Modal.Body className="sti">
     {/* <Button variant="primary">Save changes</Button>
     <Button variant="primary">Save changes</Button>
     <Button variant="primary">Save changes</Button>
@@ -33,6 +35,7 @@ return(
       <Button variant="primary">Save changes</Button>
     </Modal.Footer>
   </Modal.Dialog>
+
      )
 }
 

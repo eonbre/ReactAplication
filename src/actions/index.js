@@ -213,12 +213,15 @@ export const RoleStart = (category) => async dispatch =>{
     
     const response = await con.post(
         '/api/roles/',
-        bodyFormData
+        bodyFormData,
+        
     ).then(res =>{
         dispatch(RoleSuccess(res.data));
         console.log("ROLELES", res.data);
+
     })
     .catch(err => { 
+        
         dispatch(RoleFail("Role could not be created. "+err));
     })
 }
