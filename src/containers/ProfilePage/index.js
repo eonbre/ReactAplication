@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import RoleInfo from './RoleInfo';
 import SelectOption from './SelectOption';
+import SelectOption1 from './SelectOption1';
 
 class ProfilePage extends React.Component{
     
@@ -26,8 +27,12 @@ class ProfilePage extends React.Component{
                 <SelectOption/>
             </div>
             <div>
-                <RoleInfo></RoleInfo>
-            </div>
+              <SelectOption1/>     
+            </div> 
+
+            {/* <div>
+                <RoleInfo/>
+            </div> */}
             </>
            
             

@@ -17,7 +17,7 @@ onSubmit = values => {
   console.log("Form Values", values);
   this.props.RoleStart(values);
 }
-    
+
 render(){
 const { formatMessage} = this.props.intl;
 
@@ -27,60 +27,61 @@ return(
             onSubmit={this.onSubmit}
             render={props =>(
                 <div className="RoleInfoKlasa">
-                    <h2><FormattedMessage id="forms.UserInfo" defaultMessage="UserInfo" /></h2>
+                    <h2><FormattedMessage id="forms.UserInfo" defaultMessage="User Information" /></h2>
                     <BSForm validated={props.valid} onSubmit={props.handleSubmit}>
                         <Field 
                             name="email"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.email`} defaultMessage="email" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.email`, defaultMessage:"email" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.Email`} defaultMessage="Email" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.Email`, defaultMessage:"Email" })}
                             component = {Input}
                             validate={required}
                         />
+                        
                          <Field 
                             name="address1"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.address1`} defaultMessage="First Address" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.address1`, defaultMessage:"First Address" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.First Address`} defaultMessage="First Address" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.First Address`, defaultMessage:"First Address" })}
                             component = {Input}
                             validate={required}
                         />
                          <Field 
                             name="address2"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.address2`} defaultMessage="Second Address" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.address2`, defaultMessage:"Second Address" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.Second Address`} defaultMessage="Second Address" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.Second Address`, defaultMessage:"Second Address" })}
                             component = {Input}
                             validate={required}
                         />
                          <Field 
                             name="vat"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.vat`} defaultMessage="VAT" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.vat`, defaultMessage:"VAT" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.VAT`} defaultMessage="VAT" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.VAT`, defaultMessage:"VAT" })}
                             component = {Input}
                             validate={required}
                         />
                          <Field 
                             name="catetegoryName"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.categoryName`} defaultMessage="categoryName" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.categoryName`, defaultMessage:"categoryName" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.Category Name`} defaultMessage="Category Name" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.Category Name`, defaultMessage:"Category Name" })}
                             component = {Input}
                             validate={required}
                         />
                         <Field 
                             name="date_created"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.date_created`} defaultMessage="date_Created" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.date_created`, defaultMessage:"date_created" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.Creation_date`} defaultMessage="Creation date" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.Creation_date`, defaultMessage:"Creation_date" })}
                             component = {Input}
                             validate={required}
                         />
                          <Field 
                             name="ProfileName"
-                            label={<FormattedMessage id={`${this.FORM_LABEL}.ProfileName`} defaultMessage="ProfileName" />}
-                            placeholder={formatMessage({ id:`${this.FORM_PLC}.ProfileName`, defaultMessage:"ProfileName" })}
+                            label={<FormattedMessage id={`${this.FORM_LABEL}.Profile Name`} defaultMessage="Profile Name" />}
+                            placeholder={formatMessage({ id:`${this.FORM_PLC}.Profile Name`, defaultMessage:"Profile Name" })}
                             component = {Input}
                             validate={required}
                         />
 
 
-                        <Button type="submit"><FormattedMessage id={`${this.FORM_LABEL}.submitInfo`} defaultMessage="submitInfo" /></Button>
+                        <Button type="submit"><FormattedMessage id={`${this.FORM_LABEL}.Submit Info`} defaultMessage="Submit Info" /></Button>
                     </BSForm>
                     </div>
             )}

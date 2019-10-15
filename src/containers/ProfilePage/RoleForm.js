@@ -5,11 +5,7 @@ import "./RoleForm.css";
 
 
 class RoleForm extends React.Component{
-    
-
-
-  
-    render(){
+  render(){
         return(
            <>
               <div className="RoleInfoKlasa">

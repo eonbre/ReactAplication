@@ -12,6 +12,8 @@ export const google_client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 export function setToken(token){
     axios.defaults.headers.common['Authorization'] =
       `${token.token_type} ${token.access_token}`;
+      apiCon.defaults.headers.common['Authorization'] =
+      `${token.token_type} ${token.access_token}`;
 }
 
 export var apiCall = axios.create(

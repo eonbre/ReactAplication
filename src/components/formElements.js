@@ -3,11 +3,13 @@ import { Form } from 'react-bootstrap';
 
 
 export const Input = props => (
-    <Form.Group controlId={props.name} style={props.style}>
+    console.log("PROPSSS", props),
+    <Form.Group controlId={props.name} style={props.style} {...props.input}>
         <Form.Label>{props.label}</Form.Label>
         <Form.Control {...props.input} type={props.input.type} placeholder={props.placeholder} isInvalid={props.meta.touched && props.meta.error} />
         <Form.Control.Feedback type="invalid">{props.meta.error}</Form.Control.Feedback>
     </Form.Group>
+   
 );
 
 export const Select = props => {

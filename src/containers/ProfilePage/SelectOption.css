@@ -1,9 +1,20 @@
 .SelectOptionKlasa{
-    width:400px;
-    height:200px;
+    width:1500px;
+    height:100px;
     background-color: blueviolet;
     color:black;
-    margin-left:10px;
+    margin-left:320px;
     margin-top:0px;
     
+    
+}
+
+.SelectOptionKlasa1{
+    width:1500px;
+    height:100px;
+    background-color: blueviolet;
+    color:black;
+    margin-left:320px;
+    margin-top:80px;
+
 }

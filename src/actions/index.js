@@ -3,6 +3,7 @@ import con, {apiCon, django_client_id, django_client_secret} from '../API'
 import history from '../history'
 import{ googleLogoutAction} from './googleAuthActions'
 import roleReducer from '../reducers/role/roleReducer';
+import userReducers from '../reducers/userReducers';
 
 //----------------
 //Actions Login
@@ -36,6 +37,7 @@ export const LoginSuccess = (token) => async dispatch => {
     const payload = {...token, succ_msg: "Login sucessful!"}
     dispatch({ type: types.LOGIN_SUCCESS, payload: payload});
     console.log("Login successful")
+    
     dispatch(FetchUserStart(token));
     
 }
@@ -48,8 +50,8 @@ export const FetchUserStart = (token) => async dispatch =>{
     dispatch({ type: types.GET_USER_REQUEST});
     const header = `${token.token_type} ${token.access_token}`;
     console.log("token type" ,token);
-    con.get(
-        '/api/users/', 
+    apiCon.get(
+        '/users/', 
         {
             headers: {
                 Authorization: header,
@@ -57,6 +59,7 @@ export const FetchUserStart = (token) => async dispatch =>{
         }
     ).then(response=>{
             const send  = {data: response.data, token: token}
+            
             dispatch(FetchUserSuccess(send));
         }
     )
@@ -69,6 +72,7 @@ export const FetchUserSuccess = (user_info) => async dispatch => {
     const payload = {...user_info, succ_msg: "User fetched successfully!"}
     dispatch({ type: types.GET_USER_SUCCESS, payload: payload});
     history.push("/profile");
+    
 }
 
 export const FetchUserFail = (err_msg) => {
@@ -81,8 +85,8 @@ export const FetchUserFail = (err_msg) => {
 //----------------------
 export const RegistrationStart = (credentials) => async dispatch =>{
     dispatch({ type: types.REGISTRATION_REQUEST});
-    await con.post(
-        'api/users/',
+    await apiCon.post(
+        '/users/',
         credentials
     ).then(response =>{
         dispatch(RegistrationSuccess(response.data));
@@ -121,7 +125,7 @@ export const LogoutStart = (token, type) => async dispatch => {
     const header = `${type} ${token}`;
     const bodyFormData = new FormData();
     bodyFormData.set("client_id", django_client_id);
-    await con.post(
+    await apiCon.post(
         '/auth/invalidate-sessions', bodyFormData,
         {
             headers: {  Authorization: header,"Content-Type": "multipart/form-data"}
@@ -206,13 +210,15 @@ export const ForgotPasswordFail = (err_msg) => {
     err_msg = "Sending mail failed. Please try again." + err_msg;
     return { type: types.FORGOT_PASSWORD_FAILURE, payload: {err_msg:err_msg}}
 }
-export const RoleStart = (category) => async dispatch =>{
+
+
+export const RoleStart = (role_info) => async dispatch =>{
     dispatch({ type: types.ROLE_REQUEST});
     const bodyFormData = new FormData();
-    bodyFormData.set("category", category);
+    bodyFormData.set("Info about the role", role_info);
     
-    const response = await con.post(
-        '/api/roles/',
+    const response = await apiCon.post(
+        '/roles/',
         bodyFormData,
         
     ).then(res =>{
@@ -226,13 +232,42 @@ export const RoleStart = (category) => async dispatch =>{
     })
 }
 
-export const RoleSuccess = (category) => async dispatch =>{
+export const RoleSuccess = (role_info) => async dispatch =>{
     const msg="Role was created";
-    const payload = {...category,  succ_msg: msg}
+    const payload = {...role_info,  succ_msg: msg}
     dispatch({ type: types.ROLE_SUCCESS, payload: payload});
 }
 
 export const RoleFail = (err_msg) => {
     err_msg = "Role could not be created" + err_msg;
     return { type: types.ROLE_FAILURE, payload: {err_msg:err_msg}}
+}
+
+export const FetchRoleStart = (res_info) => async dispatch =>{
+    dispatch({ type: types.FETCH_ROLE_REQUEST});
+    console.log("Role Response" ,res_info);
+    apiCon.get(
+        '/roles/', 
+        
+    ).then(response=>{
+            const send = {data: response.data}
+            
+            dispatch(FetchRoleSuccess(send));
+        }
+    )
+    .catch(err => { 
+        dispatch(FetchRoleFail("Fetching role has failed. " + err));
+    })
+}
+
+
+export const FetchRoleSuccess = (res_info) => async dispatch => {
+    const payload = {...res_info, succ_msg: "Role fetched successfully!"}
+    console.log("fetch role info", res_info)
+    dispatch({ type: types.FETCH_ROLE_SUCCESS, payload: payload});
+}
+
+export const FetchRoleFail = (err_msg) => {
+    console.log("User fetching failed");
+    return { type: types.FETCH_ROLE_FAILURE, payload: {err_msg:err_msg}}
 }
