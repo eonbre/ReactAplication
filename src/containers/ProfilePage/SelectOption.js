@@ -22,42 +22,43 @@ class SelectOption extends React.Component{
   
 // } 
 
-componentDidMount = (values) => {
-  this.props.FetchRoleStart(values);
+componentDidMount = () => {
+  this.props.FetchRoleStart();
   console.log("PROPS ROLE", this.props.role.categoryname)
 
 }
 
 render(){
   console.log("this role category name", this.categoryname)
-  var categoryNames = [
-    {
-      id: "EDU",
+   var categoryName = [
+ 
+  {
+      id: this.props.role.id
       name: this.props.role.categoryname
       
     },
     {
-      id: "TECH",
+     id: this.props.role.id
+     name: this.props.role.categoryname
+      
+   },
+      
+     { id: "3",
+      categoryname: this.props.role.categoryname
+      
+   },
+     {
+      id: "55",
       name: this.props.role.categoryname
       
     },
-      
-    { id: "RES",
-      name: this.props.role.categoryname
-      
-    },
-    {
-      id: "HAY",
-      name: this.props.role.categoryname
-      
-    },
-  ];
+];
 //   if(this.state.value){
     
 //     return <ModalPopUp/>
 //  }
-  let categoryList = categoryNames.length > 0
-     && categoryNames.map((item, i) => {
+  let categoryList = categoryName.length > 0
+     && categoryName.map((item, i) => {
        return (
          <option key={i} value={item.id}>{item.name}</option>
          )

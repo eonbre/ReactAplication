@@ -22,7 +22,7 @@ export  default  (state = INITIAL_STATE, action) =>{
         case types.FETCH_ROLE_REQUEST:
                 return{ ...state }
         case types.FETCH_ROLE_SUCCESS:
-                return{ ...state}
+                return{ ...state, categoryname:action.payload.categoryname}
         case types.FETCH_ROLE_FAILURE:
                 return{ ...state, err: action.payload }    
        default:
