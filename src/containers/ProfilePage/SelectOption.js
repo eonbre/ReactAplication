@@ -24,67 +24,76 @@ class SelectOption extends React.Component{
 
 componentDidMount = () => {
   this.props.FetchRoleStart();
-  console.log("PROPS ROLE", this.props.role.categoryname)
+  console.log("PROPS ROLE", this.props.role.roles)
 
 }
 
 render(){
-  console.log("this role category name", this.categoryname)
-   var categoryName = [
  
-  {
-      id: this.props.role.id
-      name: this.props.role.categoryname
-      
-    },
-    {
-     id: this.props.role.id
-     name: this.props.role.categoryname
-      
-   },
-      
-     { id: "3",
-      categoryname: this.props.role.categoryname
-      
-   },
-     {
-      id: "55",
-      name: this.props.role.categoryname
-      
-    },
-];
-//   if(this.state.value){
-    
-//     return <ModalPopUp/>
-//  }
-  let categoryList = categoryName.length > 0
-     && categoryName.map((item, i) => {
-       return (
-         <option key={i} value={item.id}>{item.name}</option>
-         )
-         
-     }, this);
-    return (
-        <>
-      <div className="SelectOptionKlasa">
-            <Select 
-                name="roleSelect"
-                label={"Select roles"}
-                defaultValue={localStorage.getItem('lang')}
-                // options={this.props.role.map((o, i) => {
-                //    return {id: i, value: o.categoryname, label: o.categoryname};
-                // })}
-                 options={categoryList}
+  console.log("PROPS ROLE", this.props.role.roles.data.data[0].categoryname)
+  return("")
+}
+}
 
-                 onChange={this.onChange}
-                />
+//    var categoryName = [
+ 
+//   {
+//       id: this.props.role,
+//       name: this.props.role.categoryname
+      
+//     },
+//     {
+//      id: this.props.role.id,
+//      name: this.props.role.categoryname
+      
+//    },
+      
+//      { id: "3",
+//       categoryname: this.props.role.categoryname
+      
+//    },
+//      {
+//       id: "55",
+//       name: this.props.role.categoryname
+      
+//     },
+// ];
+// //   if(this.state.value){
+    
+// //     return <ModalPopUp/>
+// //  }
+//   let categoryList = categoryName.length > 0
+//      && categoryName.map((item, i) => {
+//        return (
+//          <option key={i} value={item.id}>{item.name}</option>
+//          )
+         
+//      }, this);
+//     return (
+//         <>
+//         {/* <div>First category name {this.props.role.categoryname}</div>
+//         <div>Second category name {this.props.role.categoryname}</div>
+//         <div>Third category name {this.props.role.categoryname}</div>
+//         <div>Fourth category name {this.props.role.categoryname}</div> */}
+//       <div className="SelectOptionKlasa">
+//             <Select 
+//                 name="roleSelect"
+//                 label={"Select roles"}
+//                 defaultValue={localStorage.getItem('lang')}
+//                 // options={this.props.role.map((o, i) => {
+//                 //    return {id: i, value: o.categoryname, label: o.categoryname};
+//                 // })}
+//                  options={categoryList}
+
+//                  onChange={this.onChange}
+//                 />
           
              
-            </div>
-        </>
-      )
-}
-} 
+//             </div>
+//         </>
+//       )
+// }
+
 const mapDispatchToProps = (dispatch) => ({
   FetchRoleStart: (values) => dispatch(FetchRoleStart(values))
  
