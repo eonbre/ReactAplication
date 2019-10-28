@@ -2,100 +2,83 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Select } from '../../components/formElements';
 import './SelectOption.css';
-import {FetchRoleStart, FetchRoleSuccess} from '../../actions'
+import {FetchRoleStart, FetchRoleSuccess, chooseCategoryName} from '../../actions'
 import ModalPopUp from '../ModalWindow'
-
+import RoleInfo from './RoleInfo';
 
 
 class SelectOption extends React.Component{
-//   constructor(){
-//     super();
-//       this.state = {
-//         value:0
-//       }
-//     }
 
-
-      
-// onChange = (values) => {
-//   this.setState({ value: this.state.value+1 })
-  
-// } 
-
+  constructor() {
+    super();
+    this.state = {
+        showInfo:false
+    };
+}
 componentDidMount = () => {
   this.props.FetchRoleStart();
-  console.log("PROPS ROLE", this.props.role.roles)
 
+}
+
+onChange = (event) => {
+ console.log("role front", event.target.value)
+ 
+  this.setState({
+    showInfo: !this.state.showPopup
+})
+this.props.chooseCategoryName();
+ console.log("chooes categotory name", this.props.chooseCategoryName())
 }
 
 render(){
- 
-  console.log("PROPS ROLE", this.props.role.roles.data.data[0].categoryname)
-  return("")
-}
+  let roleList = [];
+  if(this.state.showInfo){
+    return (<>
+      <div><RoleInfo/></div>
+     </>
+    )
+  }
+   if(this.props.role.isFetched){
+      console.log("size of the role", this.props.role.roles.data.size)
+      
+    for(var i=0; i<this.props.role.roles.data.size; i++) {
+      console.log("this role category name", this.props.role.roles.data.data[i].categoryname)
+      roleList.push(" ",this.props.role.roles.data.data[i].categoryname)
+      console.log("ROLEEE LIST", roleList)
+      }
+      return (
+        <>
+        <div className="SelectOptionKlasa1">
+        <Select 
+            name="roleSelect"
+            
+            defaultValue={localStorage.getItem('lang')}
+            options={roleList.map((o, i) => {
+               return {id:i, value:o, label:o}
+            })}
+             label="Choose existing role"
+             onChange={this.onChange}
+            />
+      </div>
+      
+      </>
+      )
+      
+     
+  }
+  
+  
+  console.log("role is not fetched")
+  return ""
+
+
 }
 
-//    var categoryName = [
- 
-//   {
-//       id: this.props.role,
-//       name: this.props.role.categoryname
-      
-//     },
-//     {
-//      id: this.props.role.id,
-//      name: this.props.role.categoryname
-      
-//    },
-      
-//      { id: "3",
-//       categoryname: this.props.role.categoryname
-      
-//    },
-//      {
-//       id: "55",
-//       name: this.props.role.categoryname
-      
-//     },
-// ];
-// //   if(this.state.value){
-    
-// //     return <ModalPopUp/>
-// //  }
-//   let categoryList = categoryName.length > 0
-//      && categoryName.map((item, i) => {
-//        return (
-//          <option key={i} value={item.id}>{item.name}</option>
-//          )
-         
-//      }, this);
-//     return (
-//         <>
-//         {/* <div>First category name {this.props.role.categoryname}</div>
-//         <div>Second category name {this.props.role.categoryname}</div>
-//         <div>Third category name {this.props.role.categoryname}</div>
-//         <div>Fourth category name {this.props.role.categoryname}</div> */}
-//       <div className="SelectOptionKlasa">
-//             <Select 
-//                 name="roleSelect"
-//                 label={"Select roles"}
-//                 defaultValue={localStorage.getItem('lang')}
-//                 // options={this.props.role.map((o, i) => {
-//                 //    return {id: i, value: o.categoryname, label: o.categoryname};
-//                 // })}
-//                  options={categoryList}
-
-//                  onChange={this.onChange}
-//                 />
-          
-             
-//             </div>
-//         </>
-//       )
-// }
+}
 
 const mapDispatchToProps = (dispatch) => ({
-  FetchRoleStart: (values) => dispatch(FetchRoleStart(values))
+  FetchRoleStart: (values) => dispatch(FetchRoleStart(values)),
+  chooseCategoryName: (values) =>dispatch(chooseCategoryName(values))
  
 });
 
@@ -110,3 +93,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SelectOption);
 
 
 
+            // options={this.props.role.map((o, i) => {
+            //    return {id: i, value: o.categoryname, label: o.categoryname};
+            // })}
+
+              // <div>{roleList}</div> 

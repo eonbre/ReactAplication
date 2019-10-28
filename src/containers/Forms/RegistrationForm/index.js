@@ -113,4 +113,6 @@ class RegistrationForm extends React.Component{
    
 }
 
+
+
 export default injectIntl(connect(null, {RegistrationStart })(RegistrationForm));

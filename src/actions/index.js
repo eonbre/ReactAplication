@@ -223,7 +223,7 @@ export const RoleStart = (role_info) => async dispatch =>{
         
     ).then(res =>{
         dispatch(RoleSuccess(res.data));
-        console.log("ROLELES", res.data);
+        console.log("ROLEgsagsagsaS", res.data);
 
     })
     .catch(err => { 
@@ -253,6 +253,7 @@ export const FetchRoleStart = (res_info) => async dispatch =>{
             const send = {data: response.data}
             
             dispatch(FetchRoleSuccess(send));
+            
         }
     )
     .catch(err => { 
@@ -270,4 +271,33 @@ export const FetchRoleSuccess = (res_info) => async dispatch => {
 export const FetchRoleFail = (err_msg) => {
     console.log("User fetching failed");
     return { type: types.FETCH_ROLE_FAILURE, payload: {err_msg:err_msg}}
+}
+
+
+export const chooseCategoryName = (res_info) => async dispatch =>{
+    dispatch({ type: types.FETCH_CATEGORYNAME_REQUEST});
+    console.log("Role Response" ,res_info);
+    apiCon.get(
+        '/roles/', 
+        
+    ).then(response=>{
+            const send = {data: response.data}
+            
+            dispatch(choosingCategoryNameSuccess(send));
+            
+        }
+    )
+    .catch(err => { 
+        dispatch(choosingcategoryNameFail("Fetching categoryname has failed. " + err));
+    })
+}
+
+export const choosingCategoryNameSuccess = (res_info) => async dispatch => {
+    const payload = {...res_info, succ_msg: "Category name has succesedeD"}
+    console.log("category name", res_info)
+    dispatch({ type: types.FETCH_CATEGORYNAME_SUCCESS, payload: payload});
+}
+export const choosingcategoryNameFail = (err_msg) => {
+    console.log("Choosing category name has failed");
+    return { type: types.FETCH_CATEGORYNAME_FAILURE, payload: {err_msg:err_msg}}
 }

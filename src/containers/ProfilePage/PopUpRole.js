@@ -31,13 +31,15 @@ render(){
                )  
               </div>
               </PopUp>
-
-
-              
-            </>
+         </>
+         
         )
     }
 }
+
+
+
+
 
 const mapStateToProps = state => {
     return {

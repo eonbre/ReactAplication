@@ -8,6 +8,7 @@ import {Input} from '../../components/formElements';
 import "./RoleInfo.css";
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { RoleStart } from '../../actions/';
+import SelectOption from './SelectOption'
 
 class RoleInfo extends React.Component{
 FORM_LABEL = 'forms.labels';
@@ -16,18 +17,25 @@ FORM_PLC = 'forms.placeholders';
 onSubmit = values => {
   console.log("Form Values", values);
   this.props.RoleStart(values);
+
 }
+componentDidMount = () => {
+ 
+    
+}
+
 
 render(){
 const { formatMessage} = this.props.intl;
 
 return(
+
     <Container>
         <Form
             onSubmit={this.onSubmit}
-            render={props =>(
+            render={props  =>(
                 <div className="RoleInfoKlasa">
-                    <h2><FormattedMessage id="forms.UserInfo" defaultMessage="User Information" /></h2>
+                    <h2>Role name</h2>
                     <BSForm validated={props.valid} onSubmit={props.handleSubmit}>
                         <Field 
                             name="email"
